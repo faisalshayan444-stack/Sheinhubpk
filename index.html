@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Shein Hub — Warm editorial luxury. Women's clothing, men's co-ord sets, designer footwear, and minimalist leather accessories.">
+  <title>Shein Hub — Warm Editorial Luxury</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+
+  <!-- Phosphor Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/thin/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/fill/style.css">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ─── Loading Screen ────────────────────────────────────── -->
+  <div class="loader" id="loader">
+    <div class="loader__logo">Shein Hub</div>
+  </div>
+
+  <!-- ─── Navigation ───────────────────────────────────────── -->
+  <nav class="nav" id="main-nav">
+    <button class="nav__hamburger" id="hamburger" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <ul class="nav__links">
+      <li><button class="nav__link filter-btn active" data-filter="all">All</button></li>
+      <li><button class="nav__link filter-btn" data-filter="women">Women</button></li>
+      <li><button class="nav__link filter-btn" data-filter="men">Men</button></li>
+      <li><button class="nav__link filter-btn" data-filter="shoes">Shoes</button></li>
+      <li><button class="nav__link filter-btn" data-filter="bags">Bags</button></li>
+    </ul>
+    <a href="#hero" class="nav__logo">Shein Hub</a>
+    <div class="nav__actions">
+      <button class="nav__btn" id="search-toggle" aria-label="Search">
+        <i class="ph-thin ph-magnifying-glass"></i>
+      </button>
+      <button class="nav__btn" id="open-cart" aria-label="Open Cart">
+        <i class="ph-thin ph-shopping-bag"></i>
+        <span class="nav__cart-count" id="cart-badge" style="display: none;">0</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ─── Mobile Menu ──────────────────────────────────────── -->
+  <div class="nav__mobile-menu" id="mobile-menu">
+    <ul class="nav__links" style="display: flex;">
+      <li><button class="nav__link filter-btn nav__mobile-link" data-filter="all">All</button></li>
+      <li><button class="nav__link filter-btn nav__mobile-link" data-filter="women">Women</button></li>
+      <li><button class="nav__link filter-btn nav__mobile-link" data-filter="men">Men</button></li>
+      <li><button class="nav__link filter-btn nav__mobile-link" data-filter="shoes">Shoes</button></li>
+      <li><button class="nav__link filter-btn nav__mobile-link" data-filter="bags">Bags</button></li>
+    </ul>
+  </div>
+
+  <!-- ─── Cart Drawer ──────────────────────────────────────── -->
+  <div class="cart-drawer-overlay" id="cart-overlay"></div>
+  <div class="cart-drawer" id="cart-drawer">
+    <div class="cart-drawer__header">
+      <h2 class="cart-drawer__title">Your Cart</h2>
+      <button class="cart-drawer__close" id="close-cart" aria-label="Close Cart">
+        <i class="ph-thin ph-x"></i>
+      </button>
+    </div>
+    
+    <div class="cart-drawer__items" id="cart-items-container">
+      <p style="text-align:center; padding: 2rem 0; color: var(--color-sand);">Your cart is currently empty.</p>
+    </div>
+
+    <div class="cart-drawer__footer">
+      <div class="cart-drawer__subtotal">
+        <span>Total</span>
+        <span id="cart-total-price">PKR 0</span>
+      </div>
+      <button class="cta cart-drawer__checkout">Checkout</button>
+    </div>
+  </div>
+
+  <!-- ─── Hero — Dual Image Slider ─────────────────────────── -->
+  <section class="hero" id="hero">
+    <div class="hero__slider">
+      <img
+        src="images/woman (7).jpg"
+        alt="Elegant woman in warm-toned luxury editorial fashion"
+        class="hero__image hero__image--active"
+      >
+      <img
+        src="images/men.jpg"
+        alt="Sophisticated men's editorial fashion"
+        class="hero__image"
+      >
+    </div>
+    <div class="hero__overlay">
+      <div class="hero__content">
+        <span class="eyebrow hero__eyebrow reveal reveal-delay-1">New Arrivals — SS '26</span>
+        <h1 class="h1-hero hero__title reveal reveal-delay-2">Dressed for<br>Desert Light.</h1>
+        <p class="hero__subtitle reveal reveal-delay-3">Warm editorial luxury — curated for those who wear their story.</p>
+        <button class="cta cta--light reveal filter-btn" data-filter="all">Explore Collection</button>
+      </div>
+    </div>
+    <div class="hero__scroll-indicator">
+      <i class="ph-thin ph-arrow-down"></i>
+    </div>
+  </section>
+
+  <!-- ─── Marquee Ticker ───────────────────────────────────── -->
+  <div class="marquee">
+    <div class="marquee__track">
+      <span class="marquee__item">Free Shipping Over PKR 10,000</span>
+      <span class="marquee__separator">✦</span>
+      <span class="marquee__item">Premium Quality Guaranteed</span>
+      <span class="marquee__separator">✦</span>
+      <span class="marquee__item">New Collection SS '26 Now Live</span>
+      <span class="marquee__separator">✦</span>
+      <span class="marquee__item">Exclusive Designs</span>
+      <span class="marquee__separator">✦</span>
+      <span class="marquee__item">Free Shipping Over PKR 10,000</span>
+      <span class="marquee__separator">✦</span>
+      <span class="marquee__item">Premium Quality Guaranteed</span>
+      <span class="marquee__separator">✦</span>
+      <span class="marquee__item">New Collection SS '26 Now Live</span>
+      <span class="marquee__separator">✦</span>
+      <span class="marquee__item">Exclusive Designs</span>
+      <span class="marquee__separator">✦</span>
+    </div>
+  </div>
+
+  <!-- ─── Perks Bar ────────────────────────────────────────── -->
+  <section class="perks">
+    <div class="container">
+      <div class="perks__grid">
+        <div class="perk reveal" data-delay="0">
+          <i class="perk__icon ph-thin ph-truck"></i>
+          <h4 class="perk__title">Free Shipping</h4>
+          <p class="perk__desc">On orders over PKR 10,000</p>
+        </div>
+        <div class="perk reveal" data-delay="100">
+          <i class="perk__icon ph-thin ph-shield-check"></i>
+          <h4 class="perk__title">Authentic Quality</h4>
+          <p class="perk__desc">100% genuine products</p>
+        </div>
+        <div class="perk reveal" data-delay="200">
+          <i class="perk__icon ph-thin ph-arrow-counter-clockwise"></i>
+          <h4 class="perk__title">Easy Returns</h4>
+          <p class="perk__desc">7-day hassle-free returns</p>
+        </div>
+        <div class="perk reveal" data-delay="300">
+          <i class="perk__icon ph-thin ph-lock-simple"></i>
+          <h4 class="perk__title">Secure Payment</h4>
+          <p class="perk__desc">100% secure checkout</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Editorial Section ────────────────────────────────── -->
+  <section class="editorial" id="editorial">
+    <div class="container">
+      <div class="editorial__grid">
+        <div class="editorial__text">
+          <span class="eyebrow reveal">Our Story</span>
+          <h2 class="h2-section reveal" style="text-align: left; margin-bottom: 2rem;">Worn, Not<br>Displayed.</h2>
+          <p class="reveal">
+            At Shein Hub, we believe fashion is an expression of self — not a performance. 
+            Each piece in our collection is curated with intention: warm earth tones, 
+            breathable fabrics, and silhouettes that move with you. From the golden deserts 
+            to city streets, our designs carry the spirit of understated luxury.
+          </p>
+          <p class="reveal">
+            Every garment tells a story of craftsmanship, sustainability, and timeless elegance. 
+            We source the finest materials and partner with artisans who share our vision of 
+            creating pieces that transcend seasons.
+          </p>
+          <a href="#shop" class="cta reveal" style="margin-top: 1rem;">
+            Discover More
+          </a>
+        </div>
+        <div class="editorial__image-stack reveal">
+          <img src="images/woman (2).jpg" alt="Editorial fashion" class="editorial__img editorial__img--front">
+          <img src="images/woman (4).jpg" alt="Editorial detail" class="editorial__img editorial__img--back">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Category Strip ───────────────────────────────────── -->
+  <section class="categories" id="categories">
+    <div class="container">
+      <div class="categories__grid">
+        <button class="category-card filter-btn" data-filter="women">
+          <img src="images/woman (8).jpg" alt="Women's collection" class="category-card__img">
+          <div class="category-card__overlay">
+            <h3 class="category-card__title">Women's</h3>
+          </div>
+        </button>
+        <button class="category-card filter-btn" data-filter="men">
+          <img src="images/men (3).jpg" alt="Men's collection" class="category-card__img">
+          <div class="category-card__overlay">
+            <h3 class="category-card__title">Men's</h3>
+          </div>
+        </button>
+        <button class="category-card filter-btn" data-filter="shoes">
+          <img src="images/shoes.jpg" alt="Shoes collection" class="category-card__img">
+          <div class="category-card__overlay">
+            <h3 class="category-card__title">Shoes</h3>
+          </div>
+        </button>
+        <button class="category-card filter-btn" data-filter="bags">
+          <img src="images/bags.jpg" alt="Bags collection" class="category-card__img">
+          <div class="category-card__overlay">
+            <h3 class="category-card__title">Bags</h3>
+          </div>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Unified Product Grid ─────────────────────────────── -->
+  <section class="products" id="shop">
+    <div class="container">
+      <span class="eyebrow reveal" style="text-align: center;">The Collection</span>
+      <h2 class="h2-section reveal" id="shop-heading">All Pieces</h2>
+      
+      <div class="products__grid" id="product-grid">
+        
+        <!-- Women's Products -->
+        <div class="product-card reveal" data-category="women">
+          <div class="product-card__image-wrap">
+            <img src="images/woman (3).jpg" alt="The Corsica Midi" class="product-card__img" loading="lazy">
+            <div class="product-card__overlay-tint"></div>
+            <span class="product-card__badge">New</span>
+            <button class="product-card__wishlist" aria-label="Add to Wishlist"><i class="ph-thin ph-heart"></i></button>
+            <button class="product-card__add-btn add-to-cart-btn" data-id="w1" data-name="The Corsica Midi" data-price="14500" data-img="images/woman (3).jpg">Add to Cart</button>
+          </div>
+          <div class="product-card__info">
+            <h3 class="product-card__title">The Corsica Midi</h3>
+            <div class="product-card__price-wrap">
+              <span class="price--current">PKR 14,500</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card reveal" data-category="women">
+          <div class="product-card__image-wrap">
+            <img src="images/woman (4).jpg" alt="The Amalfi Wrap" class="product-card__img" loading="lazy">
+            <div class="product-card__overlay-tint"></div>
+            <button class="product-card__wishlist" aria-label="Add to Wishlist"><i class="ph-thin ph-heart"></i></button>
+            <button class="product-card__add-btn add-to-cart-btn" data-id="w2" data-name="The Amalfi Wrap" data-price="12800" data-img="images/woman (4).jpg">Add to Cart</button>
+          </div>
+          <div class="product-card__info">
+            <h3 class="product-card__title">The Amalfi Wrap</h3>
+            <div class="product-card__price-wrap">
+              <span class="price--old">PKR 15,800</span>
+              <span class="price--current">PKR 12,800</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card reveal" data-category="women">
+          <div class="product-card__image-wrap">
+            <img src="images/woman (5).jpg" alt="The Sienna Blouse" class="product-card__img" loading="lazy">
+            <div class="product-card__overlay-tint"></div>
+            <span class="product-card__badge">New</span>
+            <button class="product-card__wishlist" aria-label="Add to Wishlist"><i class="ph-thin ph-heart"></i></button>
+            <button class="product-card__add-btn add-to-cart-btn" data-id="w3" data-name="The Sienna Blouse" data-price="9200" data-img="images/woman (5).jpg">Add to Cart</button>
+          </div>
+          <div class="product-card__info">
+            <h3 class="product-card__title">The Sienna Blouse</h3>
+            <div class="product-card__price-wrap">
+              <span class="price--current">PKR 9,200</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card reveal" data-category="women">
+          <div class="product-card__image-wrap">
+            <img src="images/woman (6).jpg" alt="The Linen Trousers" class="product-card__img" loading="lazy">
+            <div class="product-card__overlay-tint"></div>
+            <button class="product-card__wishlist" aria-label="Add to Wishlist"><i class="ph-thin ph-heart"></i></button>
+            <button class="product-card__add-btn add-to-cart-btn" data-id="w4" data-name="The Linen Trousers" data-price="11500" data-img="images/woman (6).jpg">Add to Cart</button>
+          </div>
+          <div class="product-card__info">
+            <h3 class="product-card__title">The Linen Trousers</h3>
+            <div class="product-card__price-wrap">
+              <span class="price--current">PKR 11,500</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Men's Products -->
+        <div class="product-card reveal" data-category="men">
+          <div class="product-card__image-wrap">
+            <img src="images/men (2).jpg" alt="The Noir Co-Ord" class="product-card__img" loading="lazy">
+            <div class="product-card__overlay-tint"></div>
+            <span class="product-card__badge">New</span>
+            <button class="product-card__wishlist" aria-label="Add to Wishlist"><i class="ph-thin ph-heart"></i></button>
+            <button class="product-card__add-btn add-to-cart-btn" data-id="m1" data-name="The Noir Co-Ord" data-price="16800" data-img="images/men (2).jpg">Add to Cart</button>
+          </div>
+          <div class="product-card__info">
+            <h3 class="product-card__title">The Noir Co-Ord</h3>
+            <div class="product-card__price-wrap">
+              <span class="price--current">PKR 16,800</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card reveal" data-category="men">
+          <div class="product-card__image-wrap">
+            <img src="images/men (3).jpg" alt="The Onyx Set" class="product-card__img" loading="lazy">
+            <div class="product-card__overlay-tint"></div>
+            <button class="product-card__wishlist" aria-label="Add to Wishlist"><i class="ph-thin ph-heart"></i></button>
+            <button class="product-card__add-btn add-to-cart-btn" data-id="m2" data-name="The Onyx Set" data-price="15200" data-img="images/men (3).jpg">Add to Cart</button>
+          </div>
+          <div class="product-card__info">
+            <h3 class="product-card__title">The Onyx Set</h3>
+            <div class="product-card__price-wrap">
+              <span class="price--current">PKR 15,200</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card reveal" data-category="men">
+          <div class="product-card__image-wrap">
+            <img src="images/men (4).jpg" alt="The Carbon Pair" class="product-card__img" loading="lazy">
+            <div class="product-card__overlay-tint"></div>
+            <button class="product-card__wishlist" aria-label="Add to Wishlist"><i class="ph-thin ph-heart"></i></button>
+            <button class="product-card__add-btn add-to-cart-btn" data-id="m3" data-name="The Carbon Pair" data-price="13500" data-img="images/men (4).jpg">Add to Cart</button>
+          </div>
+          <div class="product-card__info">
+            <h3 class="product-card__title">The Carbon Pair</h3>
+            <div class="product-card__price-wrap">
+              <span class="price--old">PKR 16,000</span>
+              <span class="price--current">PKR 13,500</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card reveal" data-category="men">
+          <div class="product-card__image-wrap">
+            <img src="images/men (5).jpg" alt="The Ribbed Polo" class="product-card__img" loading="lazy">
+            <div class="product-card__overlay-tint"></div>
+            <button class="product-card__wishlist" aria-label="Add to Wishlist"><i class="ph-thin ph-heart"></i></button>
+            <button class="product-card__add-btn add-to-cart-btn" data-id="m4" data-name="The Ribbed Polo" data-price="9200" data-img="images/men (5).jpg">Add to Cart</button>
+          </div>
+          <div class="product-card__info">
+            <h3 class="product-card__title">The Ribbed Polo</h3>
+            <div class="product-card__price-wrap">
+              <span class="price--current">PKR 9,200</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Shoes -->
+        <div class="product-card reveal" data-category="shoes">
+          <div class="product-card__image-wrap">
+            <img src="images/shoes (2).jpg" alt="The Monogram Slingback" class="product-card__img" loading="lazy">
+            <div class="product-card__overlay-tint"></div>
+            <button class="product-card__wishlist" aria-label="Add to Wishlist"><i class="ph-thin ph-heart"></i></button>
+            <button class="product-card__add-btn add-to-cart-btn" data-id="s1" data-name="The Monogram Slingback" data-price="11200" data-img="images/shoes (2).jpg">Add to Cart</button>
+          </div>
+          <div class="product-card__info">
+            <h3 class="product-card__title">The Monogram Slingback</h3>
+            <div class="product-card__price-wrap">
+              <span class="price--current">PKR 11,200</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bags -->
+        <div class="product-card reveal" data-category="bags">
+          <div class="product-card__image-wrap">
+            <img src="images/bags (2).jpg" alt="The Espresso Baguette" class="product-card__img" loading="lazy">
+            <div class="product-card__overlay-tint"></div>
+            <button class="product-card__wishlist" aria-label="Add to Wishlist"><i class="ph-thin ph-heart"></i></button>
+            <button class="product-card__add-btn add-to-cart-btn" data-id="b1" data-name="The Espresso Baguette" data-price="13500" data-img="images/bags (2).jpg">Add to Cart</button>
+          </div>
+          <div class="product-card__info">
+            <h3 class="product-card__title">The Espresso Baguette</h3>
+            <div class="product-card__price-wrap">
+              <span class="price--current">PKR 13,500</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card reveal" data-category="bags">
+          <div class="product-card__image-wrap">
+            <img src="images/bags (3).jpg" alt="The Leather Tote" class="product-card__img" loading="lazy">
+            <div class="product-card__overlay-tint"></div>
+            <span class="product-card__badge">Best Seller</span>
+            <button class="product-card__wishlist" aria-label="Add to Wishlist"><i class="ph-thin ph-heart"></i></button>
+            <button class="product-card__add-btn add-to-cart-btn" data-id="b2" data-name="The Leather Tote" data-price="18500" data-img="images/bags (3).jpg">Add to Cart</button>
+          </div>
+          <div class="product-card__info">
+            <h3 class="product-card__title">The Leather Tote</h3>
+            <div class="product-card__price-wrap">
+              <span class="price--current">PKR 18,500</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Testimonials ─────────────────────────────────────── -->
+  <section class="testimonials" id="testimonials">
+    <div class="container">
+      <span class="eyebrow reveal">What Our Clients Say</span>
+      <h2 class="h2-section reveal">Testimonials</h2>
+      <div class="testimonials__grid">
+        <div class="testimonial-card reveal">
+          <div class="testimonial-card__stars">★★★★★</div>
+          <p class="testimonial-card__text">"The quality is unmatched. Every piece I've ordered from Shein Hub feels incredibly premium. The Corsica Midi is now my go-to dress for every occasion."</p>
+          <span class="testimonial-card__author">Ayesha K. — Lahore</span>
+        </div>
+        <div class="testimonial-card reveal">
+          <div class="testimonial-card__stars">★★★★★</div>
+          <p class="testimonial-card__text">"Finally found a brand that understands modern luxury. The Noir Co-Ord set is the most comfortable and stylish outfit in my wardrobe. Highly recommend."</p>
+          <span class="testimonial-card__author">Hassan M. — Karachi</span>
+        </div>
+        <div class="testimonial-card reveal">
+          <div class="testimonial-card__stars">★★★★★</div>
+          <p class="testimonial-card__text">"The attention to detail is extraordinary. From packaging to the fabric itself — everything whispers luxury. Shein Hub is my new favorite fashion destination."</p>
+          <span class="testimonial-card__author">Zara F. — Islamabad</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Lookbook / Instagram Grid ────────────────────────── -->
+  <section class="lookbook" id="lookbook">
+    <span class="lookbook__eyebrow reveal">@sheinhub</span>
+    <div class="lookbook__grid">
+      <div class="lookbook__item">
+        <img src="images/woman (2).jpg" alt="Lookbook" class="lookbook__img" loading="lazy">
+        <div class="lookbook__overlay"><i class="lookbook__icon ph-thin ph-instagram-logo"></i></div>
+      </div>
+      <div class="lookbook__item">
+        <img src="images/men (5).jpg" alt="Lookbook" class="lookbook__img" loading="lazy">
+        <div class="lookbook__overlay"><i class="lookbook__icon ph-thin ph-instagram-logo"></i></div>
+      </div>
+      <div class="lookbook__item">
+        <img src="images/bags (2).jpg" alt="Lookbook" class="lookbook__img" loading="lazy">
+        <div class="lookbook__overlay"><i class="lookbook__icon ph-thin ph-instagram-logo"></i></div>
+      </div>
+      <div class="lookbook__item">
+        <img src="images/shoes (2).jpg" alt="Lookbook" class="lookbook__img" loading="lazy">
+        <div class="lookbook__overlay"><i class="lookbook__icon ph-thin ph-instagram-logo"></i></div>
+      </div>
+      <div class="lookbook__item">
+        <img src="images/woman (6).jpg" alt="Lookbook" class="lookbook__img" loading="lazy">
+        <div class="lookbook__overlay"><i class="lookbook__icon ph-thin ph-instagram-logo"></i></div>
+      </div>
+      <div class="lookbook__item">
+        <img src="images/men (6).jpg" alt="Lookbook" class="lookbook__img" loading="lazy">
+        <div class="lookbook__overlay"><i class="lookbook__icon ph-thin ph-instagram-logo"></i></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Newsletter ───────────────────────────────────────── -->
+  <section class="newsletter" id="newsletter">
+    <div class="container">
+      <div class="newsletter__inner">
+        <span class="eyebrow reveal">Stay Updated</span>
+        <h2 class="h2-section reveal">Join the Inner Circle</h2>
+        <p class="reveal">Be the first to know about new collections, exclusive offers, and editorial stories. No spam — only beautiful things.</p>
+        <form class="newsletter__form reveal" onsubmit="return false;">
+          <input type="email" class="newsletter__input" placeholder="Your email address" required>
+          <button type="submit" class="cta newsletter__btn">Subscribe</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Footer ───────────────────────────────────────────── -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a href="#hero" class="nav__logo">Shein Hub</a>
+          <p class="footer__desc">Warm editorial luxury. Worn, not displayed.</p>
+          <div class="footer__socials">
+            <a href="#" class="footer__social-link" aria-label="Instagram"><i class="ph-thin ph-instagram-logo"></i></a>
+            <a href="#" class="footer__social-link" aria-label="Facebook"><i class="ph-thin ph-facebook-logo"></i></a>
+            <a href="#" class="footer__social-link" aria-label="Pinterest"><i class="ph-thin ph-pinterest-logo"></i></a>
+          </div>
+        </div>
+
+        <nav class="footer__nav">
+          <h4 class="footer__heading">Collections</h4>
+          <div class="footer__links">
+            <a href="#" class="footer__link">Women</a>
+            <a href="#" class="footer__link">Men</a>
+            <a href="#" class="footer__link">Shoes</a>
+            <a href="#" class="footer__link">Bags</a>
+          </div>
+        </nav>
+
+        <nav class="footer__nav">
+          <h4 class="footer__heading">Support</h4>
+          <div class="footer__links">
+            <a href="#" class="footer__link">Contact Us</a>
+            <a href="#" class="footer__link">Shipping Info</a>
+            <a href="#" class="footer__link">Returns & Exchanges</a>
+            <a href="#" class="footer__link">Size Guide</a>
+          </div>
+        </nav>
+
+        <nav class="footer__nav">
+          <h4 class="footer__heading">About</h4>
+          <div class="footer__links">
+            <a href="#editorial" class="footer__link">Our Story</a>
+            <a href="#" class="footer__link">Sustainability</a>
+            <a href="#" class="footer__link">Careers</a>
+          </div>
+        </nav>
+      </div>
+
+      <div class="footer__bottom">
+        <span>&copy; 2026 Shein Hub. All rights reserved.</span>
+        <button class="footer__back-top" id="back-to-top">
+          Back to Top <i class="ph-thin ph-arrow-up"></i>
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <script src="scripts/main.js"></script>
+</body>
+</html>
