@@ -143,7 +143,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* ─── 7. Shopping Cart ──────────────────────────────────── */
-  let cart = [];
+  let cart = JSON.parse(localStorage.getItem('shein_hub_cart')) || [];
+
+  const saveCart = () => {
+    localStorage.setItem('shein_hub_cart', JSON.stringify(cart));
+  };
 
   const cartBtn       = document.getElementById('open-cart');
   const closeBtn      = document.getElementById('close-cart');
@@ -203,9 +207,17 @@ document.addEventListener('DOMContentLoaded', () => {
     cartItems.querySelectorAll('.cart-item__remove').forEach(btn => {
       btn.addEventListener('click', () => {
         cart.splice(parseInt(btn.dataset.index), 1);
+        saveCart();
         renderCart();
       });
     });
+
+    const checkoutBtn = document.querySelector('.cart-drawer__checkout');
+    if (checkoutBtn) {
+      checkoutBtn.addEventListener('click', () => {
+        window.location.href = 'checkout.html';
+      });
+    }
   };
 
   addBtns.forEach(btn => {
@@ -218,12 +230,81 @@ document.addEventListener('DOMContentLoaded', () => {
         price: btn.dataset.price,
         img:   btn.dataset.img
       });
+      saveCart();
       renderCart();
       openCart();
     });
   });
 
   renderCart(); // init badge state
+
+  /* ─── 7.5 WhatsApp Checkout Logic ────────────────────────── */
+  const checkoutForm = document.getElementById('whatsapp-checkout-form');
+  const checkoutSummaryItems = document.getElementById('checkout-summary-items');
+  const checkoutSummaryTotal = document.getElementById('checkout-summary-total');
+
+  if (checkoutForm && checkoutSummaryItems && checkoutSummaryTotal) {
+    // Render cart items on checkout page
+    if (cart.length === 0) {
+      checkoutSummaryItems.innerHTML = '<p style="color:var(--color-sand);">Your cart is empty.</p>';
+      checkoutSummaryTotal.textContent = 'PKR 0';
+      checkoutForm.querySelector('button[type="submit"]').disabled = true;
+    } else {
+      let checkoutTotal = 0;
+      checkoutSummaryItems.innerHTML = '';
+      cart.forEach(item => {
+        checkoutTotal += parseInt(item.price, 10);
+        checkoutSummaryItems.innerHTML += `
+          <div class="checkout-item" style="display:flex; justify-content:space-between; margin-bottom:1rem; padding-bottom:1rem; border-bottom:1px solid rgba(140,115,85,0.1);">
+            <div style="display:flex; gap:1rem;">
+              <img src="${item.img}" style="width:50px; height:65px; object-fit:cover; border-radius:3px;">
+              <div>
+                <h4 style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:0.25rem;">${item.name}</h4>
+                <span style="font-size:0.7rem; color:var(--color-sand);">Qty: 1</span>
+              </div>
+            </div>
+            <span style="font-family:var(--font-mono); font-size:0.8rem; color:var(--color-mahogany);">PKR ${Number(item.price).toLocaleString()}</span>
+          </div>
+        `;
+      });
+      checkoutSummaryTotal.textContent = `PKR ${checkoutTotal.toLocaleString()}`;
+    }
+
+    checkoutForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const name = document.getElementById('co-name').value;
+      const phone = document.getElementById('co-phone').value;
+      const address = document.getElementById('co-address').value;
+      const city = document.getElementById('co-city').value;
+
+      let orderDetails = `*NEW ORDER - SHEIN HUB* %0A%0A`;
+      orderDetails += `*Customer Details:* %0A`;
+      orderDetails += `Name: ${name} %0A`;
+      orderDetails += `Phone: ${phone} %0A`;
+      orderDetails += `Address: ${address}, ${city} %0A%0A`;
+      
+      orderDetails += `*Order Items:* %0A`;
+      let total = 0;
+      cart.forEach((item, index) => {
+        total += parseInt(item.price, 10);
+        orderDetails += `${index + 1}. ${item.name} - PKR ${Number(item.price).toLocaleString()} %0A`;
+      });
+      
+      orderDetails += `%0A*Total: PKR ${total.toLocaleString()}*`;
+
+      // Replace this with the actual WhatsApp number
+      const whatsappNumber = '923000000000'; 
+      const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${orderDetails}`;
+      
+      window.open(whatsappUrl, '_blank');
+      
+      // Clear cart after redirecting to WhatsApp
+      cart = [];
+      saveCart();
+      window.location.href = 'index.html';
+    });
+  }
 
 
   /* ─── 8. Back to Top ────────────────────────────────────── */
