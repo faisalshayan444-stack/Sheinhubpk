@@ -211,14 +211,14 @@ document.addEventListener('DOMContentLoaded', () => {
         renderCart();
       });
     });
-
-    const checkoutBtn = document.querySelector('.cart-drawer__checkout');
-    if (checkoutBtn) {
-      checkoutBtn.addEventListener('click', () => {
-        window.location.href = 'checkout.html';
-      });
-    }
   };
+
+  const checkoutBtn = document.querySelector('.cart-drawer__checkout');
+  if (checkoutBtn) {
+    checkoutBtn.addEventListener('click', () => {
+      window.location.href = 'checkout.html';
+    });
+  }
 
   addBtns.forEach(btn => {
     btn.addEventListener('click', e => {
